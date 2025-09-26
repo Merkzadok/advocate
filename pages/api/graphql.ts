@@ -5,8 +5,11 @@ import { ApolloServer } from "apollo-server-cloud-functions";
 import { connectMongoose } from "@/mongoose/mongoose-connection";
 import { GraphQLResolverMap } from "@apollo/subgraph/dist/schema-helper";
 import { typeDefs } from "@/graphql/schemas";
+import "dotenv/config";
 
-connectMongoose();
+(async () => {
+  await connectMongoose();
+})();
 
 const server = new ApolloServer({
   schema: buildSubgraphSchema({

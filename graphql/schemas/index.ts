@@ -1,4 +1,5 @@
 import { gql } from "graphql-tag";
+import { taskTypeDefs } from "./Task";
 
 export const typeDefs = gql`
   type Query {
@@ -8,4 +9,6 @@ export const typeDefs = gql`
   type Mutation {
     sayHello(name: String!): String
   }
+
+  ${taskTypeDefs}
 `;
