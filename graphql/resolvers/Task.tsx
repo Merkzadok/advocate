@@ -8,6 +8,9 @@ export const taskResolvers = {
     getFinishedTasksLists: async () => {
       return await Task.find({ deleted: true });
     },
+    getTaskById: async (_: any, { id }: { id: string }) => {
+      return await Task.findById(id);
+    },
   },
 
   Mutation: {
@@ -37,6 +40,14 @@ export const taskResolvers = {
 
       Object.assign(task, input);
       return await task.save();
+    },
+    deleteTask: async (_: any, { id }: { id: string }) => {
+      const task = await Task.findByIdAndDelete(id); // hard delete
+      if (!task) {
+        return { success: false, message: "Task not found" };
+      }
+
+      return { success: true, message: `Task with id ${id} has been deleted.` };
     },
   },
 };

@@ -12,3 +12,5 @@ export const typeDefs = gql`
 
   ${taskTypeDefs}
 `;
+
+export default typeDefs;
