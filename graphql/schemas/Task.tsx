@@ -24,12 +24,12 @@ export const taskTypeDefs = gql`
     deleted: Boolean
   }
 
-  type Query {
+  extend type Query {
     getAllTasks: [Task!]!
     getFinishedTasksLists: [Task!]!
   }
 
-  type Mutation {
+  extend type Mutation {
     addTask(input: AddTaskInput!): Task!
     updateTask(input: UpdateTaskInput!): Task!
   }
