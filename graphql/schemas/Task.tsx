@@ -3,36 +3,51 @@ import { gql } from "graphql-tag";
 export const taskTypeDefs = gql`
   type Task {
     _id: ID!
-    title: String!
-    description: String
-    completed: Boolean!
-    deleted: Boolean!
+    taskName: String!
+    description: String!
+    isDone: Boolean!
+    priority: Int!
+    tags: [String!]
     createdAt: String!
     updatedAt: String!
+    userId: String!
+  }
+  type DeleteTaskResponse {
+    success: Boolean!
+    message: String!
   }
 
-  input AddTaskInput {
-    title: String!
-    description: String
-  }
-
-  input UpdateTaskInput {
-    id: ID!
-    title: String
-    description: String
-    completed: Boolean
-    deleted: Boolean
+  type User {
+    _id: ID!
+    name: String!
+    email: String!
   }
 
   extend type Query {
     getAllTasks: [Task!]!
-    getFinishedTasksLists: [Task!]!
     getTaskById(id: ID!): Task
+    getUserDoneTasksLists(userId: ID!): [Task!]!
+    getFinishedTasksLists: [Task!]!
   }
 
   extend type Mutation {
-    addTask(input: AddTaskInput!): Task!
-    updateTask(input: UpdateTaskInput!): Task!
-    deleteTask(id: ID!): Task
+    addTask(
+      taskName: String!
+      description: String!
+      priority: Int!
+      tags: [String!]
+      userId: String!
+    ): Task!
+
+    updateTask(
+      id: ID!
+      taskName: String
+      description: String
+      priority: Int
+      isDone: Boolean
+      tags: [String!]
+      userId: String!
+    ): Task!
+    deleteTask(id: ID!): DeleteTaskResponse!
   }
 `;
