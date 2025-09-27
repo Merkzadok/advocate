@@ -42,10 +42,11 @@ export const taskResolvers = {
       return await task.save();
     },
     deleteTask: async (_: any, { id }: { id: string }) => {
-      const task = await Task.findByIdAndDelete(id); // hard delete
-      if (!task) {
-        return { success: false, message: "Task not found" };
-      }
+      const task = await Task.findById(id);
+      if (!task) throw new Error("Task not found");
+
+      task.deleted = true;
+      await task.save();
 
       return { success: true, message: `Task with id ${id} has been deleted.` };
     },
