@@ -1,4 +1,4 @@
-// import type { Config } from 'jest'
+// jest.config.js
 const nextJest = require("next/jest");
 const defaults = require("jest-config");
 
@@ -33,6 +33,7 @@ const config = {
     "!**/out/**",
     "!**/*.d.ts",
     "!**/graphql/resolvers/index.ts",
+    "!**/graphql/resolvers/**/index.ts", // This line excludes ALL index.ts files in resolvers
   ],
   testMatch: ["<rootDir>/specs/**/*.(test|spec).{js,jsx,ts,tsx}"],
   coverageDirectory: "<rootDir>/coverage",

@@ -1,4 +1,4 @@
-import { taskResolvers } from "./Task";
+import { taskResolvers } from "./task/index";
 
 export const resolvers = {
   Query: {
