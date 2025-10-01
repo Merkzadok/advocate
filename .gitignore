@@ -1,4 +1,4 @@
-node_modules
+# Generated files
 **/generated/*.tsx
 **/generated/*.ts
 **/generated/**/*.tsx
@@ -7,8 +7,25 @@ node_modules
 **/generated.tsx
 generated.ts
 generated.tsx
+
+# Next.js build output
 .next
+
+# Coverage reports
 coverage
+
+# SWC cache
 .swc/**/*
+
+# Vercel files
 .vercel
 
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
